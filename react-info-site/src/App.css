@@ -1,0 +1,106 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+nav {
+  background-color: #21222A;
+  color: #DEEBF8;
+  display: flex;
+  align-items: center;
+  height: 90px;
+  padding: 30px 25px;
+}
+
+.nav-title, .project {
+  margin: 0;
+}
+
+.icon {
+    height: 30px;
+    margin-right: 7px;
+}
+
+.nav-title { 
+  color: #61DAFB;
+  font-size: 22px;
+  margin-right: auto;
+}
+
+.project {
+  color: #DEEBF8;
+  font-weight: 600;
+}
+
+main {
+  color: #FFFFFF;
+  background-image: url(./assets/react-icon-large.png);
+  background-repeat: no-repeat;
+  background-position: right 75%;
+  background-Size: 'contain';
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 57px 27px;
+}
+
+.main-title {
+  font-size: 39px;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+
+.facts {
+  list-style: none;
+  margin-top: 46px;
+  max-width: 400px;
+}
+
+.facts li::before {
+  color: #61DAFB;
+  content: "\2022"; /*bullet point*/
+  font-weight: bold;
+  display: inline-block; 
+  margin-left: -1em;
+  width: 1em; 
+}
+
+.facts > li {
+  padding-block: 10px;
+}
+
+/* .logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  display: inline-block;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+} 
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}*/
