@@ -1,0 +1,106 @@
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.app {
+  width: 100%;
+  max-width: 550px;
+  height: 100vh;
+}
+
+/* Navbar */
+nav {
+  background-color: #F55A5A;
+  color: #FFFFFF; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+}
+
+.world {
+  font-size: 24px;
+  margin-right: 7px;
+}
+
+.title {
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.075em;
+}
+
+/* Entries */
+.entry-list {
+  background-color: #FFFFFF;
+  color: #2B283A;
+  display: flex;
+  flex-direction: column;
+  padding: 45px 40px;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  text-align: left;
+  border-bottom: 1px solid #F5F5F5;
+}
+
+.card:last-child {
+  border: none;
+} 
+
+.snapshot {
+  height: 168px;
+  width: 125px;
+  border-radius: 5px;
+  margin-right: 19px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  line-height: 12px;
+}
+
+.location-div {
+  display: flex;
+  align-items: center;
+}
+
+.marker {
+  color: #F55A5A;
+  margin-right: 4px;
+}
+
+.location {
+  letter-spacing: 0.17em;
+  margin-right: 12px;
+}
+
+.maps {
+  color: #918E9B;
+}
+
+.place {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 0;
+  margin-bottom: 17px;
+}
+
+.dates {
+  font-weight: 700;
+  margin: 0;
+}
+
+.journal {
+  line-height: 15px;
+  margin-top: 9px;
+}

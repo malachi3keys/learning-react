@@ -1,11 +1,12 @@
 :root {
-  font-family: Poppins, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
-  color: #000;
-  background-color: #ffffff;
+  /* color-scheme: light dark; 
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;*/
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,4 +22,12 @@
 body {
   margin: 0;
   display: flex;
+  text-align: center;
 }
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+} */
