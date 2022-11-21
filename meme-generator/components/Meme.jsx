@@ -2,12 +2,16 @@ import memesData from '../src/memesData'
 import { useState } from 'react'
 
 export default function Meme() {
-    const [randomMeme, setRandomMeme] = useState();
+    const [topMemes, setTopMemes] = useState(memesData.data.memes); 
+    const [randomMeme, setRandomMeme] = useState({
+        memeImg: topMemes[0],
+        topText: '',
+        bottomText: ''
+    });
 
     function newMeme() {
-        const topmemes = memesData.data.memes;
-        var num = Math.floor(Math.random() * topmemes.length);
-        setRandomMeme(topmemes[num]);
+        var num = Math.floor(Math.random() * topMemes.length);
+        setRandomMeme(prevMeme => ({...prevMeme, memeImg: topMemes[num]}));
     }
 
     
@@ -20,9 +24,9 @@ export default function Meme() {
             </div>
             
             <div className='meme'>
-                <p className='top-caption'>hi</p>
-                <p className='bottom-caption'>hello</p>
-                {randomMeme && <img src={randomMeme.url} className='meme-image' width={randomMeme.width} height={randomMeme.height}/>}
+                <p className='top-caption'>{randomMeme.topText}</p>
+                <p className='bottom-caption'>{randomMeme.bottomText}</p>
+                {randomMeme && <img src={randomMeme.memeImg.url} className='meme-image'/>}
             </div>
         </main>    
     )
