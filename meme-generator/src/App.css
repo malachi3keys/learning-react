@@ -36,8 +36,6 @@
 
 /* Input text */
 main {
-  display: flex;
-  flex-direction: column;
   padding: 36px;
 }
 
@@ -75,23 +73,45 @@ main {
 
 /* Render Meme */
 .meme {
-  color: #FFFFFF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   margin-top: 36px;
-  width: 100%;
-}
-
-.top-caption, .bottom-caption {  
-  font-family: Impact, sans-serif;
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 2.5rem; 
-  text-shadow: 2px 2px 4px #000;
 }
 
 .meme-image {
   max-width: 100%;
-  margin: auto;
+  border-radius: 3px;
+}
+
+.top-caption, .bottom-caption {  
+  color: #FFFFFF;
+  font-family: Impact, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 2.5rem; 
+  margin: 15px 0;
+  padding: 0 5px;
+  position: absolute;
+  left: 50%;
+  text-align: center;
+  text-transform: uppercase;  
+  text-shadow: 2px 2px 0 #000,
+  -2px -2px 0 #000,
+  2px -2px 0 #000,
+  -2px 2px 0 #000,
+  0 2px 0 #000,
+  2px 0 0 #000,
+  0 -2px 0 #000,
+  -2px 0 0 #000,
+  2px 2px 5px #000;
+  transform: translateX(-50%);
+  width: 80%;
+}
+
+.bottom-caption{
+  bottom: 0;
+}
+
+.top-caption {
+  top: 0;
 }
