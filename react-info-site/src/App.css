@@ -1,8 +1,23 @@
 #root {
-  margin: 0 auto;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+}
+
+/* Navbar */
 nav {
   background-color: #21222A;
   color: #DEEBF8;
@@ -10,6 +25,12 @@ nav {
   align-items: center;
   height: 90px;
   padding: 30px 25px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+nav.light {
+  background-color: #FFFFFF;
 }
 
 .nav-title, .project {
@@ -27,21 +48,94 @@ nav {
   margin-right: auto;
 }
 
+nav.light .nav-title {
+  color: #00ABCA;
+}
+
 .project {
   color: #DEEBF8;
   font-weight: 600;
 }
 
+/* Toggle button */
+.toggler {
+  display: flex;
+  align-items: center;
+}
+
+.toggler p {
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.toggler--slider {
+  width: 25px;
+  height: 13px;
+  background-color: #F5F5F5;
+  border-radius: 2rem;
+  margin-inline: 7px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #FFFFFF;
+  box-sizing: content-box;
+}
+
+nav.light .toggler--slider {
+  background-color: #2B283A;
+  border-color: #2B283A;
+}
+
+.toggler--slider--circle {
+  height: 13px;
+  width: 13px;
+  background-color: #222222;
+  border-radius: 50%;
+}
+
+nav.light .toggler--slider--circle {
+  background-color: #FFFFFF;
+}
+
+.toggler--light {
+  color: #918E9B;
+}
+
+nav.light .toggler--light {
+  color: #2B283A;
+}
+
+.toggler--dark {
+  color: #FFFFFF;
+}
+
+nav.light .toggler--dark {
+  color: #D5D4D8;
+}
+
+nav.light .toggler--slider {
+  justify-content: flex-end;
+}
+
+/* Main */
 main {
   color: #FFFFFF;
-  background-image: url(./assets/react-icon-large.png);
+  background-color: #282D35;
+  background-image: url("./assets/react-icon-dark.png");
   background-repeat: no-repeat;
-  background-position: right 75%;
+  background-position: right center;
   background-Size: 'contain';
   display: flex;
   flex-direction: column;
   text-align: left;
   padding: 57px 27px;
+}
+
+main.light {
+  background-image: url("./assets/react-icon-light.png"); 
+  background-color: #FFFFFF;
+  color: #213547; 
 }
 
 .main-title {
@@ -51,56 +145,20 @@ main {
 }
 
 .facts {
-  list-style: none;
   margin-top: 46px;
   max-width: 400px;
 }
 
-.facts li::before {
-  color: #61DAFB;
-  content: "\2022"; /*bullet point*/
-  font-weight: bold;
-  display: inline-block; 
-  margin-left: -1em;
-  width: 1em; 
-}
-
 .facts > li {
+  line-height: 19px;
   padding-block: 10px;
 }
 
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  display: inline-block;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.facts > li::marker {
+  color: #61DAFB;
+  font-size: 1.4rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+main.light .facts li::marker{
+  color: #00ABCA;
 } 
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}*/
