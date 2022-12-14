@@ -23,6 +23,10 @@ body {
   padding: 40px;
   height: 400px;
   min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
@@ -49,11 +53,21 @@ body {
   background-color: #FFFFFF; 
   border-radius: 4px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+
+.die-txt {
   color: #2B283A;
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.5rem;
-  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .correct {
@@ -66,9 +80,18 @@ body {
   border-radius: 4px;
   box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
   color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Karla', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.25rem;
-  padding: 6px;
+  height: 50px;
   width: 92px;
+}
+
+.roll:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
