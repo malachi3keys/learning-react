@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Instructions from './components/Instructions'
 import Die from './components/Die'
 import './App.css'
+import Confetti from 'react-confetti'
 
 export default function App() {
   const [dice, setDice] = useState(() => allNewDice())
+  const [tenzies, setTenzies] = useState(false)
 
   function allNewDice() {
     const roll = [];
@@ -32,9 +34,6 @@ export default function App() {
   }
 
   function holdNum(id, hold) { 
-      // need to check if held numbers match each other
-      // win game when all held dice are same number
-
     setDice(oldDice => oldDice.map((die) => {
         return die.id === id
           ? {...die, isHeld: !hold}
@@ -43,6 +42,30 @@ export default function App() {
     )
   }
 
+  useEffect(() => {
+    //check if all held dice match
+    const dieCheck = dice[0].value;
+    const allHeld = dice.every(die => die.isHeld)
+    var dieCount = 0;
+
+    if (allHeld){ 
+      for (let i=0; i < dice.length; i++){
+        if(dice[i].value === dieCheck){
+          dieCount = dieCount + 1;
+          if(dieCount == dice.length){
+            setTenzies(true)
+          }
+        }
+      }
+    }
+    
+  }, [dice])
+
+  function newGame(){
+    //reset all dice
+    setTenzies(false)
+    setDice(allNewDice())
+  }
 
   const rolls = dice.map((die) => {
     return (
@@ -59,14 +82,20 @@ export default function App() {
 
   return (
     <main className='App'>
+      {tenzies && <Confetti numberOfPieces={500} recycle={false}/>}
       <Instructions />
       <div className='dice-box'>
         {rolls} 
       </div>
-      <button 
+      {tenzies 
+      ? <button 
+        className='roll'
+        onClick={newGame}>
+        New Game </button>
+      : <button 
         className='roll'
         onClick={rollDice}>
-        Roll</button>
+        Roll</button>}
     </main>
   )
 }
