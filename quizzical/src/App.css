@@ -1,0 +1,84 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F5F7FB;
+  margin: 0;
+  /* padding: 0; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  min-height: 100vh; 
+  /* min-width: 320px; */
+}
+
+.App {
+  background-color: #F5F7FB;
+  color: #293264;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 550px;
+  min-height: 550px;
+}
+
+.top-blob {
+  position: relative;
+  left: 62.24%;
+  right: -62.24%;
+  top: 161.16%;
+  bottom: -161.16%;
+  background-color: #FFFAD1;
+  border-radius: 30% 70% 42% 58% / 30% 33% 67% 70%;
+  transform: rotate(-150deg);
+  height: 200px;
+  width: 200px;
+}
+
+.bottom-blob {
+  position: relative;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background-color: #DEEBF8;
+  border-radius: 29% 71% 33% 67% / 65% 18% 82% 35%;
+  transform: rotate(-150deg);
+  height: 200px;
+  width: 200px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.25rem;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin: 7px 0 30px;
+}
+
+.start-btn {
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  border: none;
+  border-radius: 15px;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  padding: 16px 28px;
+  width: 193px;
+}
