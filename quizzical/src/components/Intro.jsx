@@ -1,10 +1,12 @@
-export default function Intro() {
+export default function Intro(props) {
     return (
         <div>
             <div className='top-blob'></div>
             <h1 className='title'>Quizzical</h1>
             <p className='subtitle'>Trivia questions</p>
-            <button className='start-btn'>Start Quiz</button>
+            <button className='start-btn'
+                onClick={() => props.startQuiz()}
+            >Start Quiz</button>
             <div className='bottom-blob'></div>
         </div>
     )
