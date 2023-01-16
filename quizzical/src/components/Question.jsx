@@ -1,34 +1,51 @@
+import { useState } from 'react'
+
 export default function Question(props) {    
-    if (props.anum == 4){
-        var mult = true
-    } else {
-        var mult = false
+    const multChoice = props.answers
+    const [selected, setSelected] = useState(() => {
+        const titles = [];
+        for (let i = 0; i < multChoice.length; i++){
+            var choiceTitle = multChoice[i]
+            titles.push({[choiceTitle]: false})
+        }
+
+        return titles
+    })
+
+    function selectAnswer(a) {
+        setSelected(prevSelected => ({...prevSelected, [a]: !prevSelected[a]}))
     }
 
-    console.log(props.question)
+    
+    const choices = multChoice.map((a) => {
+        var test
+
+        if (props.check){
+            if (a == props.correct){
+                test = 'correct'
+            } else {
+                test = 'incorrect'
+            }
+        } 
+        
+        return (
+            //make radio choice instead of separate buttons so user can only choose one??
+            <button 
+                key={a}
+                className={`answer-btn ${selected[a] ? 'selected' : ''} ${test}`}
+                onClick={() => selectAnswer(a)}
+            >
+                {a}
+            </button>
+        )
+      })
+
 
     return (
-        <div>
-            <div  className='question'>
-                <h2 className='question-title'>{props.question}</h2>
-                {mult &&
-                    <div className='answer-div'>
-                        <button className={`answer-btn ${props.isSelected ? 'selected' : ''} ${props.isCorrect ? 'correct' : 'incorrect'}`}>{props.answers[0]}</button>
-                        <button className={`answer-btn ${props.isSelected ? 'selected' : ''} ${props.isCorrect ? 'correct' : 'incorrect'}`}>{props.answers[1]}</button>
-                        <button className={`answer-btn ${props.isSelected ? 'selected' : ''} ${props.isCorrect ? 'correct' : 'incorrect'}`}>{props.answers[2]}</button>
-                        <button className={`answer-btn ${props.isSelected ? 'selected' : ''} ${props.isCorrect ? 'correct' : 'incorrect'}`}>{props.answers[3]}</button>
-                    </div>
-                } 
-                {mult || 
-                    <div className='answer-div'>
-                        <button className={`answer-btn ${props.isSelected ? 'selected' : ''} ${props.isCorrect ? 'correct' : 'incorrect'}`}>{props.answers[0]}</button>
-                        <button className={`answer-btn ${props.isSelected ? 'selected' : ''} ${props.isCorrect ? 'correct' : 'incorrect'}`}>{props.answers[1]}</button>
-                    </div>
-                } 
-            </div>
+        <div className='question'>
+            <h2 className='question-title'>{props.question}</h2>
+            <div className='answer-div'>{choices}</div>
             <hr className='borderline'></hr>    
         </div>
-        
-       
     )
 }

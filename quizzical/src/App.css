@@ -115,6 +115,21 @@ body {
   min-width: 65px;
 }
 
+.selected {
+  background-color: #D6DBF5;
+  border: none;
+}
+
+.correct {
+  background-color: #94D7A2;
+  border: none;
+}
+
+.incorrect {
+  background-color: #F8BCBC;
+  border: none;
+}
+
 .borderline {
   border: 1px solid #DBDEF0;
   width: 100%;
@@ -131,5 +146,17 @@ body {
   line-height: 0.75rem; 
   height: 35px; 
   width: 120px;
-  
+}
+
+.play-again {
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  border: none;
+  border-radius: 10px;
+  font-family: Inter, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 0.75rem; 
+  height: 35px; 
+  width: 120px;
 }

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import  Intro from './components/Intro'
-import  Quiz from './components/Quiz'
 import  Question from './components/Question'
 import { nanoid } from 'nanoid'
 import './App.css'
@@ -8,15 +7,16 @@ import './App.css'
 export default function App() {
   const [showQ, setShowQ] = useState(false)
   const [questions, setQuestions] = useState([])
+  const [checkAnswers, setCheckAnswers] = useState(false)
 
   function startQuiz() {
     setShowQ(true)
   }
 
   useEffect(() => {
-    fetch('https://opentdb.com/api.php?amount=5&category=9&type=multiple')
-        .then((res) => res.json())
-        .then((data) => setQuestions(data.results))
+    fetch("https://opentdb.com/api.php?amount=5&category=9&type=multiple")
+      .then((res) => res.json())
+      .then((data) => setQuestions(data.results))
   },[showQ])
 
 
@@ -38,10 +38,14 @@ export default function App() {
         question ={q.question}
         answers = {randomAnswers}
         correct = {q.correct_answer}
-        anum = {randomAnswers.length}
+        check= {checkAnswers}
       />
     )
   })
+
+  function gradeQuiz() {
+    setCheckAnswers(true)
+  }
 
 
   return (
@@ -49,7 +53,11 @@ export default function App() {
       {showQ 
       ?<div>
         {quiz}
-        <button className='check-answers'>Check answers</button>
+        <button 
+          className='check-answers'
+          onClick={gradeQuiz}>
+            Check answers
+        </button>
       </div>
       :<Intro 
         startQuiz = {startQuiz}
