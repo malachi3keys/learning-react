@@ -1,42 +1,52 @@
 import { useState } from 'react'
+import { nanoid } from 'nanoid'
 
 export default function Question(props) {    
     const multChoice = props.answers
-    const [selected, setSelected] = useState(() => {
-        const titles = [];
-        for (let i = 0; i < multChoice.length; i++){
-            var choiceTitle = multChoice[i]
-            titles.push({[choiceTitle]: false})
-        }
-
-        return titles
+    const qName = props.id
+    const [selected, setSelected] = useState({
+        [qName]: ''
     })
 
-    function selectAnswer(a) {
-        setSelected(prevSelected => ({...prevSelected, [a]: !prevSelected[a]}))
+    function handleChange(event) {
+        const {name, value, type, checked} = event.target
+        setSelected(prevFormData => {
+            return {
+                ...prevFormData,
+                [name]: type === "checkbox" ? checked : value
+            }
+        })
     }
 
     
     const choices = multChoice.map((a) => {
-        var test
-
         if (props.check){
             if (a == props.correct){
-                test = 'correct'
+                var test = 'correct'
             } else {
-                test = 'incorrect'
+                var test = 'incorrect'
             }
         } 
-        
+
         return (
-            //make radio choice instead of separate buttons so user can only choose one??
-            <button 
-                key={a}
-                className={`answer-btn ${selected[a] ? 'selected' : ''} ${test}`}
-                onClick={() => selectAnswer(a)}
-            >
-                {a}
-            </button>
+            <div 
+                
+                key={nanoid()}>
+                <label className='radio-label'>
+                <input 
+                    type='radio'
+                    name={qName}
+                    value={a}
+                    checked={selected[qName] === a}
+                    onChange={handleChange}
+                    className='radio-btn'
+                />
+                <div className={`answer-btn ${selected[qName] == a ? 'selected' : ''} ${test}`}>
+                    {a}
+                </div>
+                
+                </label>
+            </div>
         )
       })
 

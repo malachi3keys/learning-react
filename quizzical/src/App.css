@@ -104,30 +104,43 @@ body {
 .answer-btn {
   background-color: #F5F7FB;
   border: solid #4D5B9E 0.79px;
-  border-radius: 8px;
+  border-radius: 12px;
   color: #293264;
   font-family: Inter, sans-serif;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  height: 20px;
-  line-height: 0.75rem; 
+  height: 25px;
   margin: 0 7px;
   min-width: 65px;
+  padding: 7px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.radio-btn {
+  position: absolute;
+  opacity: 0;
+}
+
+/* .radio-label {
+  
+} */
 
 .selected {
   background-color: #D6DBF5;
-  border: none;
+  border: solid #D6DBF5 0.79px;
 }
 
 .correct {
   background-color: #94D7A2;
-  border: none;
+  border: solid #94D7A2 0.79px;
 }
 
 .incorrect {
   background-color: #F8BCBC;
-  border: none;
+  border: solid #F8BCBC 0.79px;
 }
 
 .borderline {

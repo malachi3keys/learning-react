@@ -21,6 +21,7 @@ export default function App() {
 
 
   const quiz = questions.map((q) => {
+    var id = nanoid()
     var randomAnswers = [q.correct_answer]
     randomAnswers.push(...q.incorrect_answers) //add incorrect answers to array
 
@@ -34,7 +35,8 @@ export default function App() {
 
     return (
       <Question 
-        key={nanoid()}
+        key={id}
+        id={id}
         question ={q.question}
         answers = {randomAnswers}
         correct = {q.correct_answer}
