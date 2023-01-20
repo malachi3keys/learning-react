@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import  Intro from './components/Intro'
 import  Question from './components/Question'
-import { nanoid } from 'nanoid'
 import './App.css'
 
 export default function App() {
   const [showQ, setShowQ] = useState(false)
   const [questions, setQuestions] = useState([])
+  const [userAnswers, setUserAnswers] = useState([])
   const [checkAnswers, setCheckAnswers] = useState(false)
+  var errorMsg = ''
 
   function startQuiz() {
     setShowQ(true)
@@ -20,8 +21,7 @@ export default function App() {
   },[showQ])
 
 
-  const quiz = questions.map((q) => {
-    var id = nanoid()
+  const quiz = questions.map((q, index) => {
     var randomAnswers = [q.correct_answer]
     randomAnswers.push(...q.incorrect_answers) //add incorrect answers to array
 
@@ -35,36 +35,63 @@ export default function App() {
 
     return (
       <Question 
-        key={id}
-        id={id}
-        question ={q.question}
-        answers = {randomAnswers}
-        correct = {q.correct_answer}
-        check= {checkAnswers}
+        key={index}
+        id={index}
+        question={q.question}
+        answers={randomAnswers}
+        correct={q.correct_answer}
+        check={checkAnswers}
       />
     )
   })
 
-  function gradeQuiz() {
-    setCheckAnswers(true)
+
+  function updateAnswers(event) {
+    event.preventDefault()
+    const {name, value} = event.target
+    // console.log(`${name}: ${value}`)
+    setUserAnswers(prevAnswer => {
+        return {
+            ...prevAnswer,
+            [name]: value
+        }
+    })
   }
 
+  function gradeQuiz(event) {
+    console.log(event)
+    event.preventDefault()
+    const userLength = Object.keys(userAnswers).length
+    const qLength = Object.keys(questions).length
+
+    if(userLength == qLength){
+      console.log('yup')
+      setCheckAnswers(true)
+      errorMsg = ''
+    } else{
+      errorMsg = 'Please answer all questions'
+      console.log(`${errorMsg}`)
+    }    
+  }
 
   return (
     <main className='App'>
-      {showQ 
-      ?<div>
-        {quiz}
-        <button 
-          className='check-answers'
-          onClick={gradeQuiz}>
-            Check answers
-        </button>
+      <div className={`${showQ ? 'hidden' : ''}`}>
+        <Intro 
+          startQuiz={startQuiz}
+        />
       </div>
-      :<Intro 
-        startQuiz = {startQuiz}
-      />
-      }
+      <div className={`${showQ ? '' : 'hidden'}`}>
+        <form onSubmit={gradeQuiz}>
+          <div onChange={(e) => updateAnswers(e)}>
+            {quiz}  
+          </div>
+          <button className='check-answers'>
+            Check answers
+          </button>
+        </form>
+        <div>{errorMsg}</div>
+      </div>      
     </main>
   )
 }

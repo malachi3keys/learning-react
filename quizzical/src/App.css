@@ -173,3 +173,8 @@ body {
   height: 35px; 
   width: 120px;
 }
+
+/* hide divs */
+.hidden {
+  display: none;
+}

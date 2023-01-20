@@ -7,17 +7,17 @@ export default function Question(props) {
     const [selected, setSelected] = useState({
         [qName]: ''
     })
-
-    function handleChange(event) {
+    
+   
+    function answerChange(event) {
         const {name, value, type, checked} = event.target
-        setSelected(prevFormData => {
+        setSelected(prevAnswer => {
             return {
-                ...prevFormData,
+                ...prevAnswer,
                 [name]: type === "checkbox" ? checked : value
             }
-        })
+        })      
     }
-
     
     const choices = multChoice.map((a) => {
         if (props.check){
@@ -29,22 +29,19 @@ export default function Question(props) {
         } 
 
         return (
-            <div 
-                
-                key={nanoid()}>
+            <div key={nanoid()}>
                 <label className='radio-label'>
-                <input 
-                    type='radio'
-                    name={qName}
-                    value={a}
-                    checked={selected[qName] === a}
-                    onChange={handleChange}
-                    className='radio-btn'
-                />
-                <div className={`answer-btn ${selected[qName] == a ? 'selected' : ''} ${test}`}>
-                    {a}
-                </div>
-                
+                    <input 
+                        type='radio'
+                        name={qName}
+                        value={a}
+                        checked={selected[qName] === a}
+                        onChange={answerChange}
+                        className='radio-btn'
+                    />
+                    <div className={`answer-btn ${selected[qName] == a ? 'selected' : ''} ${test}`}>
+                        {a}
+                    </div>
                 </label>
             </div>
         )
