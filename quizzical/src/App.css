@@ -161,6 +161,21 @@ body {
   width: 120px;
 }
 
+.score-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.final-score {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  margin-right: 20px;
+}
+
 .play-again {
   background-color: #4D5B9E;
   color: #F5F7FB;
@@ -172,6 +187,14 @@ body {
   line-height: 0.75rem; 
   height: 35px; 
   width: 120px;
+}
+
+.errormsg {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  margin: 20px auto;
 }
 
 /* hide divs */

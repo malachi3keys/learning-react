@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
 
 export default function Question(props) {    
@@ -7,8 +7,17 @@ export default function Question(props) {
     const [selected, setSelected] = useState({
         [qName]: ''
     })
+
+    // //Only reset the order of the answers if it's a completely new question
+    // const [rightAnswer, setRightAnswer] = useState(props.correct)
+    // useEffect(()=>{
+    //     if(rightAnswer == props.correct){
+    //         setMultChoice(props.answers)
+    //         setRightAnswer(props.correct)
+    //     } 
+    //     // else{ setMultChoice(props.answers)}
+    // },[])
     
-   
     function answerChange(event) {
         const {name, value, type, checked} = event.target
         setSelected(prevAnswer => {

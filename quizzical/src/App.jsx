@@ -8,7 +8,8 @@ export default function App() {
   const [questions, setQuestions] = useState([])
   const [userAnswers, setUserAnswers] = useState([])
   const [checkAnswers, setCheckAnswers] = useState(false)
-  var errorMsg = ''
+  const [errorMsg, setErrorMsg] = useState('')
+  const [finalScore, setFinalScore] = useState('')
 
   function startQuiz() {
     setShowQ(true)
@@ -49,7 +50,6 @@ export default function App() {
   function updateAnswers(event) {
     event.preventDefault()
     const {name, value} = event.target
-    // console.log(`${name}: ${value}`)
     setUserAnswers(prevAnswer => {
         return {
             ...prevAnswer,
@@ -59,19 +59,34 @@ export default function App() {
   }
 
   function gradeQuiz(event) {
-    console.log(event)
     event.preventDefault()
     const userLength = Object.keys(userAnswers).length
     const qLength = Object.keys(questions).length
 
     if(userLength == qLength){
-      console.log('yup')
+      setErrorMsg('')
       setCheckAnswers(true)
-      errorMsg = ''
+      var score = 0
+      
+        for(let i=0; i < qLength; i++){
+          console.log(`user: ${userAnswers[i]} correct: ${questions[i].correct_answer}`)
+          if(userAnswers[i] == questions[i].correct_answer){
+            score = score + 1
+          }
+        }
+
+      setFinalScore(`${score}/${qLength}`) 
     } else{
-      errorMsg = 'Please answer all questions'
-      console.log(`${errorMsg}`)
+      setErrorMsg('Please answer all questions')
     }    
+  }
+
+  function playAgain(){
+    setShowQ(false)
+    setUserAnswers([])
+    setCheckAnswers(false)
+    setErrorMsg('')
+    setFinalScore('')
   }
 
   return (
@@ -86,11 +101,20 @@ export default function App() {
           <div onChange={(e) => updateAnswers(e)}>
             {quiz}  
           </div>
-          <button className='check-answers'>
+          <button className={`check-answers ${checkAnswers ? 'hidden' : ''}`}>
             Check answers
           </button>
         </form>
-        <div>{errorMsg}</div>
+        <div className={`errormsg ${checkAnswers ? 'hidden' : ''}`}>{errorMsg}</div>
+        {checkAnswers && <div className='score-div'>
+          <div className='final-score'>You scored {finalScore} correct answers</div>
+          <button 
+            className='play-again'
+            onClick={playAgain}
+          >
+            Play Again
+          </button>
+        </div>}
       </div>      
     </main>
   )
