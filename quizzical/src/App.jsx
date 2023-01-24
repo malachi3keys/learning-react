@@ -6,6 +6,7 @@ import './App.css'
 export default function App() {
   const [showQ, setShowQ] = useState(false)
   const [questions, setQuestions] = useState([])
+  const [randomAnswers, setRandomAnswers] = useState([])
   const [userAnswers, setUserAnswers] = useState([])
   const [checkAnswers, setCheckAnswers] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -23,23 +24,35 @@ export default function App() {
 
 
   const quiz = questions.map((q, index) => {
-    var randomAnswers = [q.correct_answer]
-    randomAnswers.push(...q.incorrect_answers) //add incorrect answers to array
+    //if randomAnswers is empty or the correct answer for a new question is not in randomAndswers
+    //add new randomized answers to randomAnswers
+    const test = (x) => x == q.correct_answer  
+    if(randomAnswers[index] == undefined || randomAnswers[index].findIndex(test) == -1){
+      var answers = [q.correct_answer]
+      answers.push(...q.incorrect_answers) //add incorrect answers to array
 
-    //randomize answers
-    for (var i = randomAnswers.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = randomAnswers[i];
-      randomAnswers[i] = randomAnswers[j];
-      randomAnswers[j] = temp;
-    }
+      //randomize answers
+      for (var i = answers.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = answers[i];
+        answers[i] = answers[j];
+        answers[j] = temp;
+      }
+
+      setRandomAnswers(prevChoices => {
+        return {
+            ...prevChoices,
+            [index]: answers
+        }
+      })
+    } 
 
     return (
       <Question 
         key={index}
         id={index}
         question={q.question}
-        answers={randomAnswers}
+        answers={randomAnswers[index]}
         correct={q.correct_answer}
         check={checkAnswers}
       />
@@ -68,15 +81,15 @@ export default function App() {
       setCheckAnswers(true)
       var score = 0
       
-        for(let i=0; i < qLength; i++){
-          console.log(`user: ${userAnswers[i]} correct: ${questions[i].correct_answer}`)
-          if(userAnswers[i] == questions[i].correct_answer){
-            score = score + 1
-          }
+      for(let i=0; i < qLength; i++){
+        // console.log(`user: ${userAnswers[i]} correct: ${questions[i].correct_answer}`)
+        if(userAnswers[i] == questions[i].correct_answer){
+          score = score + 1
         }
+      }
 
       setFinalScore(`${score}/${qLength}`) 
-    } else{
+    } else {
       setErrorMsg('Please answer all questions')
     }    
   }
@@ -84,6 +97,7 @@ export default function App() {
   function playAgain(){
     setShowQ(false)
     setUserAnswers([])
+    setRandomAnswers([])
     setCheckAnswers(false)
     setErrorMsg('')
     setFinalScore('')
