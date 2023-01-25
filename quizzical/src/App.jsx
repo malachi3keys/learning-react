@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import  Intro from './components/Intro'
 import  Question from './components/Question'
 import './App.css'
+import {decode} from 'html-entities'
 
 export default function App() {
   const [showQ, setShowQ] = useState(false)
@@ -9,7 +10,6 @@ export default function App() {
   const [randomAnswers, setRandomAnswers] = useState([])
   const [userAnswers, setUserAnswers] = useState([])
   const [checkAnswers, setCheckAnswers] = useState(false)
-  const [errorMsg, setErrorMsg] = useState('')
   const [finalScore, setFinalScore] = useState('')
 
   function startQuiz() {
@@ -24,9 +24,13 @@ export default function App() {
 
 
   const quiz = questions.map((q, index) => {
+    //get rid of escaped characters 
+    var newQuestion = decode(q.question)
+    var correct = decode(q.correct_answer)
+    
     //if randomAnswers is empty or the correct answer for a new question is not in randomAndswers
     //add new randomized answers to randomAnswers
-    const test = (x) => x == q.correct_answer  
+    const test = (x) => x == correct  
     if(randomAnswers[index] == undefined || randomAnswers[index].findIndex(test) == -1){
       var answers = [q.correct_answer]
       answers.push(...q.incorrect_answers) //add incorrect answers to array
@@ -34,8 +38,8 @@ export default function App() {
       //randomize answers
       for (var i = answers.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
-        var temp = answers[i];
-        answers[i] = answers[j];
+        var temp = decode(answers[i]);
+        answers[i] = decode(answers[j]);
         answers[j] = temp;
       }
 
@@ -51,9 +55,9 @@ export default function App() {
       <Question 
         key={index}
         id={index}
-        question={q.question}
+        question={newQuestion}
         answers={randomAnswers[index]}
-        correct={q.correct_answer}
+        correct={correct}
         check={checkAnswers}
       />
     )
@@ -77,7 +81,6 @@ export default function App() {
     const qLength = Object.keys(questions).length
 
     if(userLength == qLength){
-      setErrorMsg('')
       setCheckAnswers(true)
       var score = 0
       
@@ -90,7 +93,7 @@ export default function App() {
 
       setFinalScore(`${score}/${qLength}`) 
     } else {
-      setErrorMsg('Please answer all questions')
+      alert('Please answer all questions')
     }    
   }
 
@@ -99,18 +102,18 @@ export default function App() {
     setUserAnswers([])
     setRandomAnswers([])
     setCheckAnswers(false)
-    setErrorMsg('')
     setFinalScore('')
   }
 
   return (
     <main className='App'>
-      <div className={`${showQ ? 'hidden' : ''}`}>
+      <div className='top-blob'></div>
+      <div className={`intro ${showQ ? 'hidden' : ''}`}>
         <Intro 
           startQuiz={startQuiz}
         />
       </div>
-      <div className={`${showQ ? '' : 'hidden'}`}>
+      <div className={`quiz ${showQ ? '' : 'hidden'}`}>
         <form onSubmit={gradeQuiz}>
           <div onChange={(e) => updateAnswers(e)}>
             {quiz}  
@@ -119,7 +122,6 @@ export default function App() {
             Check answers
           </button>
         </form>
-        <div className={`errormsg ${checkAnswers ? 'hidden' : ''}`}>{errorMsg}</div>
         {checkAnswers && <div className='score-div'>
           <div className='final-score'>You scored {finalScore} correct answers</div>
           <button 
@@ -129,7 +131,8 @@ export default function App() {
             Play Again
           </button>
         </div>}
-      </div>      
+      </div> 
+      <div className='bottom-blob'></div>     
     </main>
   )
 }

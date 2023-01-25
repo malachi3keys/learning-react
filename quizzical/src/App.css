@@ -38,6 +38,7 @@ body {
   transform: rotate(-150deg);
   height: 200px;
   width: 200px;
+  z-index: 1;
 }
 
 .bottom-blob {
@@ -51,9 +52,14 @@ body {
   transform: rotate(-150deg);
   height: 200px;
   width: 200px;
+  z-index: 1;
 }
 
 /* Start Page */
+.intro {
+  z-index: 2;
+}
+
 .title {
   font-size: 2rem;
   font-weight: 700;
@@ -83,6 +89,10 @@ body {
 }
 
 /* Quiz */
+.quiz {
+  z-index: 2;
+}
+
 .question {
   display: flex;
   flex-direction: column;
@@ -95,6 +105,7 @@ body {
   line-height: 1.125rem;
 }
 
+/* Answer buttons */
 .answer-div {
   display: flex;
   justify-content: start;
@@ -106,13 +117,14 @@ body {
   border: solid #4D5B9E 0.79px;
   border-radius: 12px;
   color: #293264;
+  cursor: pointer;
   font-family: Inter, sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  height: 25px;
-  margin: 0 7px;
+  height: 28px;
+  margin: 5px 7px;
   min-width: 65px;
-  padding: 7px;
+  padding: 10px;
 
   display: flex;
   justify-content: center;
@@ -124,10 +136,7 @@ body {
   opacity: 0;
 }
 
-/* .radio-label {
-  
-} */
-
+/* conditional answer button css */
 .selected {
   background-color: #D6DBF5;
   border: solid #D6DBF5 0.79px;
@@ -136,6 +145,7 @@ body {
 .correct {
   background-color: #94D7A2;
   border: solid #94D7A2 0.79px;
+  opacity: 1;
 }
 
 .incorrect {
@@ -143,9 +153,24 @@ body {
   border: solid #F8BCBC 0.79px;
 }
 
+.fade {
+  opacity: 0.5;
+}
+
+/* hr */
 .borderline {
   border: 1px solid #DBDEF0;
   width: 100%;
+  /* margin: 2px 0; */
+}
+
+/* Scoring the Quiz */
+.errormsg {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  margin: 20px auto;
 }
 
 .check-answers {
@@ -154,9 +179,10 @@ body {
   border: none;
   border-radius: 10px;
   font-family: Inter, sans-serif;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 0.75rem; 
+  line-height: 1rem; 
+  margin: 8px auto;
   height: 35px; 
   width: 120px;
 }
@@ -182,19 +208,11 @@ body {
   border: none;
   border-radius: 10px;
   font-family: Inter, sans-serif;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 0.75rem; 
+  line-height: 1rem; 
   height: 35px; 
   width: 120px;
-}
-
-.errormsg {
-  font-family: 'Inter';
-  font-weight: 700;
-  font-size: 0.8rem;
-  line-height: 1rem;
-  margin: 20px auto;
 }
 
 /* hide divs */

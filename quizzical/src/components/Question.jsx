@@ -20,17 +20,21 @@ export default function Question(props) {
     }
     
     const choices = multChoice.map((a) => {
+        //Styles for scoring quiz
+        var test = ''
         if (props.check){
             if (a == props.correct){
-                var test = 'correct'
+                test = 'correct'
+            } else if (a ==  selected[qName]) {
+                test = 'incorrect fade'
             } else {
-                var test = 'incorrect'
+                test = 'fade'
             }
         } 
 
         return (
             <div key={nanoid()}>
-                <label className='radio-label'>
+                <label>
                     <input 
                         type='radio'
                         name={qName}
@@ -38,6 +42,7 @@ export default function Question(props) {
                         checked={selected[qName] === a}
                         onChange={answerChange}
                         className='radio-btn'
+                        disabled={props.check ? true : false}
                     />
                     <div className={`answer-btn ${selected[qName] == a ? 'selected' : ''} ${test}`}>
                         {a}
