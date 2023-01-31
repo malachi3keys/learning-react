@@ -24,32 +24,31 @@ body {
   align-items: center;
   min-width: 550px;
   min-height: 550px;
-  padding: 40px;
+  padding: 10% 7%;
+  position: relative;
+  overflow: hidden; /* cut off excess shape */
 }
 
+/* blobs formatted using fancy border radius generator */
 .top-blob {
-  position: relative;
-  left: 62.24%;
-  right: -62.24%;
-  top: 161.16%;
-  bottom: -161.16%;
+  position: absolute;
+  right: 0;
+  top: 0;
   background-color: #FFFAD1;
-  border-radius: 30% 70% 42% 58% / 30% 33% 67% 70%;
-  transform: rotate(-150deg);
+  border-radius: 30% 70% 29% 71% / 40% 51% 49% 60%;
+  transform: translate(40%, -40%);
   height: 200px;
   width: 200px;
   z-index: 1;
 }
 
 .bottom-blob {
-  position: relative;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   background-color: #DEEBF8;
   border-radius: 29% 71% 33% 67% / 65% 18% 82% 35%;
-  transform: rotate(-150deg);
+  transform: rotate(150deg) translate(50%, -30%);
   height: 200px;
   width: 200px;
   z-index: 1;
@@ -161,7 +160,7 @@ body {
 .borderline {
   border: 1px solid #DBDEF0;
   width: 100%;
-  /* margin: 2px 0; */
+  margin-top: 10px;
 }
 
 /* Scoring the Quiz */
@@ -182,7 +181,7 @@ body {
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 1rem; 
-  margin: 8px auto;
+  margin: 15px auto;
   height: 35px; 
   width: 120px;
 }
