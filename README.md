@@ -23,19 +23,19 @@ An exercise in reproducing different elements of a website and using React props
 
 ## Travel Journal
 
-A travel blog with descriptions of different trips.
+A travel blog with a description of each location.
 
-<img src="images/travel_journal.png" alt="" width="500">
+<img src="images/travel_journal.png" alt="a travel blog which shows the location, duration, description, and a picture of each destination" width="500">
 
 ## Meme Generator
 
 Generate a random meme and write a caption for it. Utilizes the Imgflip API to generate meme images.
 
-<img src="" alt="meme generator with text input" width="500">
+<img src="images/meme_generator.png" alt="meme generator with text input" width="500">
 
-## Notes App
+## Markdown Notes App
 
-Create and edit a list of notes.
+Create and edit a list of notes in the markdown language.
 
 <img src="" alt="a note app with an editing window" width="500">
 
