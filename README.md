@@ -1,6 +1,6 @@
 # Learning React
 
-This repository documents me learning the basics of javaScript library React. I went through the Scrimba React Course and completed the projects listed below. 
+This repository documents me learning the fundamentals of the javaScript library React. I went through the Learn React JS w/ Bob Ziroll course and completed the projects listed below.
 
 ## [React Info Site](./react-info-site)
 
